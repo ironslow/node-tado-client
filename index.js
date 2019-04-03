@@ -162,18 +162,19 @@ class Tado {
         return this.apiCall(`/api/v2/homes/${home_id}/zones/${zone_id}/overlay`, 'delete');
     }
 
-    setZoneOverlay(home_id, zone_id, power, temperature, termination) {
+    setZoneOverlay(home_id, zone_id, power, type, mode, fanspeed, temperature, termination) {
         var config = {
             setting: {
-                type: "HEATING",
             },
             termination: {
             }
         }
+        config.setting.type = type;
 
         if (power.toLowerCase() == 'on') {
             config.setting.power = 'ON';
-
+            config.setting.mode = mode;
+            config.setting.fanSpeed = fanspeed;
             if (temperature) {
                 config.setting.temperature = {};
                 config.setting.temperature.celsius = temperature;
