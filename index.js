@@ -175,6 +175,9 @@ class Tado {
             config.setting.power = 'ON';
             config.setting.mode = mode;
             config.setting.fanSpeed = fanspeed;
+            if (mode == 'HEAT') {
+                config.setting.fanSpeed = fanspeed;
+            }
             if (temperature) {
                 config.setting.temperature = {};
                 config.setting.temperature.celsius = temperature;
